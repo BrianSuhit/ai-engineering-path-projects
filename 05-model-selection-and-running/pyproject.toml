@@ -1,0 +1,12 @@
+[project]
+name = "05-model-selection-and-running"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "google-genai>=2.10.0",
+    "ollama>=0.6.2",
+    "python-dotenv>=1.2.2",
+    "requests>=2.34.2",
+]
