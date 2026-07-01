@@ -1,0 +1,7 @@
+**/env/
+**/.venv/
+**/.env
+**/*.log
+**/.vscode/
+**/pyproject.toml
+**/uv.lock
