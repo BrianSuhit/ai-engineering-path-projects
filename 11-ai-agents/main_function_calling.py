@@ -1,5 +1,5 @@
 # Paquetes a descargar:
-# pip install google-generativeai python-dotenv
+# pip install google-genai python-dotenv
 import json
 from google import genai
 from dotenv import load_dotenv

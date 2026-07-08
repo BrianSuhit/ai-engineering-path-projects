@@ -1,5 +1,5 @@
-# Packages required:
-# pip install google-generativeai python-dotenv
+# Paquetes requeridos:
+# pip install google-genai python-dotenv
 
 import json
 from google import genai
@@ -9,11 +9,11 @@ load_dotenv()
 client = genai.Client()
 
 # ==========================================
-# 1. LOCAL TOOLS (The "hands" of the agent)
+# 1. HERRAMIENTAS LOCALES (Las "manos" del agente)
 # ==========================================
 
 def get_schedule(day: str) -> dict:
-    """Fetches the university schedule based on the day."""
+    """Consulta los horarios de la universidad en base al día."""
     day_clean = day.lower().strip()
 
     if day_clean == "lunes":
@@ -25,9 +25,10 @@ def get_schedule(day: str) -> dict:
 
 def get_academic_calendar(query: str) -> dict:
     """Fetches academic calendar events from exa.unicen.edu.ar/calendario-academico/"""
+    """Consulta eventos del calendario académico desde exa.unicen.edu.ar/calendario-academico/"""
     query_clean = query.lower().strip()
 
-    # Simulating data fetching from the UNICEN website
+    # Simula la obtención de datos del sitio web de la UNICEN
     if "feriado" in query_clean or "holiday" in query_clean:
         return {"event": "Feriado Nacional", "date": "9 de Julio (Día de la Independencia)", "source": "exa.unicen.edu.ar"}
     elif "examen" in query_clean or "finales" in query_clean:
@@ -37,7 +38,7 @@ def get_academic_calendar(query: str) -> dict:
 
 
 # ==========================================
-# 2. TOOL SCHEMAS & MAPPING
+# 2. ESQUEMAS DE HERRAMIENTAS Y MAPEO
 # ==========================================
 
 schedule_tool = {
@@ -47,7 +48,7 @@ schedule_tool = {
     "parameters": {
         "type": "object",
         "properties": {
-            "day": {"type": "string", "description": "The day of the week, e.g. Lunes, Martes"}
+            "day": {"type": "string", "description": "El día de la semana, ej. Lunes, Martes"}
         },
         "required": ["day"],
     },
@@ -60,7 +61,7 @@ calendar_tool = {
     "parameters": {
         "type": "object",
         "properties": {
-            "query": {"type": "string", "description": "The type of event to look for, e.g. feriado, finales, examen"}
+            "query": {"type": "string", "description": "El tipo de evento a buscar, ej. feriado, finales, examen"}
         },
         "required": ["query"],
     },
@@ -72,17 +73,17 @@ available_functions = {
 }
 
 # ==========================================
-# 3. SYSTEM PROMPT (Guardrails)
+# 3. PROMPT DE SISTEMA (Barandillas de seguridad)
 # ==========================================
 system_prompt = """
-You are an academic assistant for the Facultad de Ciencias Exactas at UNICEN.
-Your goal is to help students with their schedules and the academic calendar.
-STRICT GUARDRAIL: You must ONLY answer questions related to university schedules, holidays, and exams.
-If the user asks about anything else (e.g., politics, coding, general knowledge), politely refuse to answer.
+Eres un asistente académico para la Facultad de Ciencias Exactas de la UNICEN.
+Tu objetivo es ayudar a los estudiantes con sus horarios y el calendario académico.
+REGLA ESTRICTA: SOLO debes responder preguntas relacionadas con horarios universitarios, feriados y exámenes.
+Si el usuario pregunta sobre cualquier otra cosa (por ejemplo, política, programación, conocimiento general), rehúsa cortésmente a responder.
 """
 
 # ==========================================
-# 4. THE AGENT ORCHESTRATOR LOOP
+# 4. EL BUCLE ORQUESTADOR DEL AGENTE
 # ==========================================
 
 user_input = "Tengo clases el martes? Y decime si hay algún feriado pronto según la facultad."
@@ -95,8 +96,9 @@ print(f"👤 USER: {user_input}\n")
 
 while iteration_count < MAX_ITERATIONS:
     iteration_count += 1
+    
 
-    # We pass tools and system_instruction in every call because they are interaction-scoped
+    # Pasamos las herramientas y la instrucción del sistema en cada llamada porque tienen alcance de interacción
     interaction = client.interactions.create(
         model="gemini-3.5-flash",
         input=user_input,
@@ -107,15 +109,15 @@ while iteration_count < MAX_ITERATIONS:
 
     function_results = []
 
-    # Check if the model decided to call any tools
+    # Comprueba si el modelo decidió llamar a alguna herramienta
     if interaction.steps:
         for step in interaction.steps:
             if step.type == "function_call":
-                # Execute the real Python function safely
+                # Ejecuta la función real de Python de forma segura
                 result = available_functions[step.name](**step.arguments)
                 print(f"⚙️  System executed tool {step.name}({step.arguments}) -> Result: {result}")
 
-                # Package the result to send it back to the model
+                # Empaqueta el resultado para enviarlo de vuelta al modelo
                 function_results.append({
                     "type": "function_result",
                     "name": step.name,
@@ -123,15 +125,15 @@ while iteration_count < MAX_ITERATIONS:
                     "result": [{"type": "text", "text": json.dumps(result)}],
                 })
 
-    # Break the loop if the model didn't call any tools (Final Answer reached)
+    # Si el modelo no llamó a ninguna herramienta, rompe el bucle (Respuesta final alcanzada)
     if not function_results:
         print(f"\n🤖 ANSWER: {interaction.output_text}")
         break
 
-    # Feed the function results back into the loop
+    # Vuelve a introducir los resultados de la función en el bucle
     user_input = function_results
     previous_id = interaction.id
 
 # Failsafe check
 if iteration_count >= MAX_ITERATIONS:
-    print("\n🚨 ERROR: Agent reached maximum iterations. Stopping to prevent infinite loop and token burning.")
+    print("\n🚨 ERROR: El agente alcanzó el máximo de iteraciones. Deteniéndose para evitar bucles infinitos y consumo de tokens.")
