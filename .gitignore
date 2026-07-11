@@ -3,3 +3,12 @@
 **/.env
 **/*.log
 **/.vscode/
+
+# Ignorar directorios de cache de Python
+**/__pycache__/
+**/*.pyc
+
+# Ignorar directorios y archivos de PyInstaller
+**/dist/
+**/build/
+**/*.spec
