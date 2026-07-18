@@ -1,0 +1,11 @@
+[project]
+name = "ai-personalized-chatbot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "google-genai>=2.12.1",
+    "load-dotenv>=0.1.0",
+    "streamlit>=1.59.2",
+]

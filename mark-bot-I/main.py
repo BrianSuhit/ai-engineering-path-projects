@@ -1,14 +1,8 @@
 import streamlit as st
 import google.genai as genai
 
-# --- Phase 4: Connect UI to Gemini API (MVP Completion) ---
-# As per the Constitution.md, this script connects the Streamlit UI to the 
-# Gemini API using the modern Interactions API. It manages conversation history
-# on the server-side using `previous_interaction_id` for efficiency, as
-# recommended by the `gemini-interactions-docs.md`.
-
 # Set the title for the Streamlit app
-st.title("Vanilla Assistant 🍦")
+st.title("🤖 MARK-BOT I")
 
 # --- Gemini API Key Input ---
 st.sidebar.header("Configuration")
@@ -80,16 +74,3 @@ if "gemini_api_key" in st.session_state and st.session_state.gemini_api_key:
                     st.error(f"An error occurred with the Gemini API: {e}")
 else:
     st.info("Please enter your Gemini API key in the sidebar to start chatting.")
-
-# --- How to Run This Streamlit App  ---
-# 1. Make sure you have the dependencies installed (`uv add streamlit`).
-# 2. Open your terminal in the project directory.
-# 3. Run the command: streamlit run c:\Users\brian\code\ai-engineering-path-projects\ai-chatbot-vanilla\main.py
-
-# --- How to Deploy to Streamlit Community Cloud ---
-# 1. Create a `requirements.txt` file:
-#    uv pip freeze > requirements.txt
-# 2. Push your project, including `main.py`, `.streamlit/config.toml`, and `requirements.txt`, to a public GitHub repository.
-# 3. Go to share.streamlit.io and sign up or log in.
-# 4. Click "New app", select your repository, branch, and this file (`main.py`).
-# 5. Click "Deploy!". Your app will be live in a few minutes.
