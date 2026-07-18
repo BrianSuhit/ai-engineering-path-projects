@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#9c8dc2"          # --accent-purple
+backgroundColor = "#e0e0dc"       # --bg-core
+secondaryBackgroundColor = "#ffffff" # --bg-card
+textColor = "#615e85"             # --text-primary
+font = "Geist Mono"
