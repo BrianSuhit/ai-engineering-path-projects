@@ -84,7 +84,7 @@ if "gemini_api_key" in st.session_state and st.session_state.gemini_api_key:
     # --- Role and State Management ---
     st.sidebar.header("Chat Controls")
     # Button to clear chat history and state
-    if st.sidebar.button("Clear Chat"):
+    if st.sidebar.button("🗑️ Clear Chat"):
         st.session_state.messages = []
         if "previous_interaction_id" in st.session_state:
             del st.session_state.previous_interaction_id

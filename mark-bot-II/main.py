@@ -18,30 +18,13 @@ if st.sidebar.button("Apply Key"):
         st.session_state.gemini_api_key = api_key_from_input
         st.rerun() # Rerun the app to show the chat interface immediately
 
-# --- Role and State Management ---
-st.sidebar.header("Chat Controls")
-# Input for the assistant's role/persona
-st.session_state.assistant_role = st.sidebar.text_area(
-    "Assistant's Role",
-    value="You are a helpful and friendly assistant.",
-    help="Define the personality and instructions for the assistant."
-)
-
-# Button to clear chat history and state
-if st.sidebar.button("Clear Chat"):
-    st.session_state.messages = []
-    if "previous_interaction_id" in st.session_state:
-        del st.session_state.previous_interaction_id
-    st.rerun()
-
-
-# Initialize the chat history in Streamlit's session state if it doesn't exist
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
 # --- Chat Interface ---
 # Only show the chat interface if the API key has been provided.
 if "gemini_api_key" in st.session_state and st.session_state.gemini_api_key:
+    # Initialize the chat history in Streamlit's session state if it doesn't exist
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+
     # Initialize the Gemini Client. We store it in the session state to avoid
     # re-creating it on every interaction.
     if "gemini_client" not in st.session_state:
@@ -52,6 +35,25 @@ if "gemini_api_key" in st.session_state and st.session_state.gemini_api_key:
         except Exception as e:
             st.error(f"Failed to initialize Gemini client: {e}")
             st.stop()
+
+    # --- Role and State Management ---
+    st.sidebar.header("Chat Controls")
+    # Input for the assistant's role/persona
+    st.session_state.assistant_role = st.sidebar.text_area(
+        "Assistant's Role",
+        value="You are a helpful and friendly assistant.",
+        help="Define the personality and instructions for the assistant."
+    )
+
+    # Button to clear chat history and state
+    if st.sidebar.button("🗑️ Clear Chat"):
+        st.session_state.messages = []
+        if "previous_interaction_id" in st.session_state:
+            del st.session_state.previous_interaction_id
+        st.rerun()
+
+
+
 
     # Display the existing chat messages from the session state
     for message in st.session_state.messages:
