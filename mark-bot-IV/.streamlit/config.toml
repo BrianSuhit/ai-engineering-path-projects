@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#333333"          # Pastel Yellow
+backgroundColor = "#e0e0dc"       # --bg-core
+secondaryBackgroundColor = "#ffffff" # --bg-card
+textColor = "#333333"             # Off-black
+font = "Geist Mono"
