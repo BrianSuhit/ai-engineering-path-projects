@@ -4,6 +4,7 @@
 **Duración:**
 - 5 cuatrimestres para Tandil.
 - 3 años para el resto de las sedes (Lobería y Las Flores).
+**Carga horaria total:** La carrera cuenta con una carga horaria total de 1750 horas de formación teórico-práctica.
 **Sedes:**
 - Tandil, provincia de Buenos Aires, Argentina (sede principal).
 - Lobería, provincia de Buenos Aires, Argentina.
@@ -49,12 +50,27 @@
 - **Instancia Virtual:** Septiembre - Noviembre.
 - **Instancia Presencial:** Febrero - Marzo.
 - **Instancia Semipresencial:** Abril - Junio (Exclusiva para recursantes).
+- **Examen Libre:** Existe una instancia en Diciembre para rendir el ingreso de forma libre, ideal para quienes ya tienen conocimientos previos de programación y matemática y quieren saltarse el curso completo.
+
+**Documentación para la Inscripción:**
+- El proceso de inscripción digital en el SIU Guaraní se completa obligatoriamente entregando de forma presencial un sobre madera A4 con el DNI, partida de nacimiento y título secundario impresos en la ventanilla de alumnos.
+
 
 **Materias del curso de ingreso:**
 - **Fundamentos de la programación:** pauta de aprobación: parcial o recuperatorio con nota >= 4.
 - **Introducción a la vida universitaria:** pauta de aprobación: trabajo práctico integrador.
 
+## Mascota oficial de la facultad de ciencias exactas y otros datos
+
+- Gallo, tambien conocido como el Gallito o "El Gallo de Exactas" acompaña a los equipos siempre en las olimpiadas y otros encuentros deportivos!
+- El color oficial de la facultad de exactas es el Aurinegro ( amarillo y negro ).
+- Es la delegación más ganadora de la historia de las Olimpíadas Interfacultades de la UNICEN.
+- Acumula un total histórico de 20 copas generales en esta competencia.Ostenta el récord de haber ganado la copa general durante 10 años consecutivos.
+- Mantiene un clásico histórico por el podio deportivo frente a Ciencias Económicas.
+
 ## Contacto
+
+**Correo institucional de la carrera:** tudai@exa.unicen.edu.ar
 
 ### Facultad de Ciencias Exactas
 **Teléfono:** (+54)(0249) 4385650
