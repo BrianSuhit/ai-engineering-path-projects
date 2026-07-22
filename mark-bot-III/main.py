@@ -5,15 +5,13 @@ from models import AVAILABLE_GEMINI_MODELS
 import os
 
 
-# Define the path to the icon
-ICON_PATH = "assets/exa.png"
+SCRIPT_DIR = os.path.dirname(__file__)
+ICON_PATH = os.path.abspath(os.path.join(SCRIPT_DIR, "assets", "exa.png"))
 
-# Check if the icon file exists, otherwise use an emoji as fallback
 if os.path.exists(ICON_PATH):
     page_icon_setting = ICON_PATH
 else:
-    page_icon_setting = "🤖" # Fallback to an emoji if the file is not found
-    st.warning(f"Advertencia: No se encontró el archivo de icono '{ICON_PATH}'. Usando un emoji como fallback.")
+    page_icon_setting = "🤖"
 
 st.set_page_config(
         page_title="TUDAI CHATBOT",
