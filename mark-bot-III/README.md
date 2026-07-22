@@ -4,7 +4,7 @@ Un asistente virtual con arquitectura RAG diseñado para responder consultas de 
 
 
 ## DATA FLOW
-![Diagrama de como flujes los datos en el proyecto](assets/data-flow-tudai-chatbot.png.png)
+![Diagrama de como flujes los datos en el proyecto](assets/data-flow-tudai-chatbot.png)
 
 
 ## 🛠️ Tech Stack
