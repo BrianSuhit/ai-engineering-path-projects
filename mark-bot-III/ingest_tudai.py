@@ -6,7 +6,7 @@ chroma_client = chromadb.PersistentClient(path="./chroma_db")
 collection = chroma_client.get_or_create_collection(name="tudai_knowledge")
 
 # 2. Read the raw Markdown data
-with open("data/tudai.md", "r", encoding="utf-8") as file:
+with open("data/tudai_knowledge.md", "r", encoding="utf-8") as file:
     markdown_content = file.read()
 
 # 3. Document structure-based chunking (splitting by main headers)
