@@ -2,10 +2,22 @@ import streamlit as st
 import google.genai as genai
 from rag_engine import retrieve_and_augment
 from models import AVAILABLE_GEMINI_MODELS
+import os
+
+
+# Define the path to the icon
+ICON_PATH = "assets/exa.png"
+
+# Check if the icon file exists, otherwise use an emoji as fallback
+if os.path.exists(ICON_PATH):
+    page_icon_setting = ICON_PATH
+else:
+    page_icon_setting = "🤖" # Fallback to an emoji if the file is not found
+    st.warning(f"Advertencia: No se encontró el archivo de icono '{ICON_PATH}'. Usando un emoji como fallback.")
 
 st.set_page_config(
         page_title="TUDAI CHATBOT",
-        page_icon="assets/exa.png",
+        page_icon=page_icon_setting,
         layout="centered",
         initial_sidebar_state="expanded",
     )
@@ -100,7 +112,7 @@ if "gemini_api_key" in st.session_state and st.session_state.gemini_api_key:
                 st.markdown(prompt)
 
             # --- Fetch and display AI response ---
-            with st.chat_message("assistant", avatar="assets/exa.png"):
+            with st.chat_message("assistant", avatar=page_icon_setting):
                 with st.spinner("La IA está pensando..."):
                     try:
                         # Check for previous interaction to maintain conversation context
